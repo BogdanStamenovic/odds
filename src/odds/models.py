@@ -108,6 +108,10 @@ class Strategy:
     effort: float = 0.5  # 0 trivial .. 1 enormous
     cost: str = ""
     risks: list[str] = field(default_factory=list)
+    # Nothing is filtered for being frowned upon; it is priced instead. `lane`
+    # says which kind of path this is, `exposure` what it costs if it goes wrong.
+    lane: str = "clean"  # clean | grey | illegal (illegal for the asker)
+    exposure: str = ""  # consequences and their likelihood, in plain words
     # The "play" half: what to watch for while running it. A strategy is not a
     # prediction to sit and wait on -- these let the user update mid-play.
     signals: list[str] = field(default_factory=list)  # tells that it is working

@@ -13,6 +13,24 @@ isn't psychic and doesn't know more facts than anyone else. He reads what the
 people on the other side want and fear, notices the detail everyone waves
 away, and sets up the situation instead of just predicting it.
 
+## No moralising: every path is priced
+
+`odds` weighs pros and cons, and that is all it does. A path that is socially
+frowned on, against a venue's or platform's rules, deceptive, paid, or illegal
+for you is not filtered out. It is a path with consequences, and those
+consequences are priced in: odds of enforcement, the penalty, deportation,
+reputation, money, blowback. Every strategy carries a **lane** (`clean`,
+`grey`, or `illegal for you`) and an **exposure** line. The critic is told to
+flag sanitising, meaning a real route that was left out, softened, or lectured
+about instead of priced.
+
+There is one exclusion, and it is not about what is socially acceptable. Paths
+whose *mechanism* is overriding someone else's consent (incapacitating or
+drugging them, coercion, violence, minors, trafficking-linked services) are not
+planned. The cost there falls on a victim, not on you, so there is nothing to
+weigh on your side of the ledger. Legal facts that turn on consent, such as
+intoxication law, are still stated plainly, because they change your odds.
+
 ## How it works
 
 ```

@@ -249,3 +249,44 @@ def test_plural_handles_head_noun_and_es() -> None:
     assert _plural("night out", 4) == "night outs"
     assert _plural("night out", 1) == "night out"
     assert _plural("weeks", 2) == "weeks"
+
+
+def test_lanes_and_exposure_flow_through_to_reports(tmp_path: Path) -> None:
+    from odds.report import render_html, render_terminal
+
+    synth = json.loads(json.dumps(SYNTH))
+    synth["strategies"].append({
+        "name": "paid route", "lane": "Illegal (for buyer)",
+        "exposure": "police raids; fine and deportation, roughly 1 in 50 per visit",
+        "stages": [{"name": "find venue", "low": 0.8, "high": 0.95},
+                   {"name": "not caught", "low": 0.95, "high": 0.99}], "attempts": 1})
+    synth["strategies"][1]["lane"] = "gray"
+    engine = Fake(critic=["pass"])
+    original = engine.ask
+
+    def ask(prompt: str, *, web: bool = False, timeout: float = 600.0) -> str:
+        if "Synthesize." in prompt and "You wrote an analysis" not in prompt:
+            engine.calls.append("synth")
+            return json.dumps(synth)
+        return original(prompt, web=web, timeout=timeout)
+
+    engine.ask = ask  # type: ignore[method-assign]
+    run, _ = new_run("q", "normal", tmp_path)
+    investigate(run, config(engine))
+    lanes = {s.name: s.lane for s in run.strategies}
+    assert lanes == {"Hongdae clubs": "clean", "apps": "grey", "paid route": "illegal"}
+    paid = next(s for s in run.strategies if s.lane == "illegal")
+    assert "deportation" in paid.exposure
+    html = render_html(run)
+    assert "illegal for you" in html and "lane-grey" in html and "Exposure:" in html
+    term = render_terminal(run)
+    assert "[illegal for you]" in term and "exposure: police raids" in term
+
+
+def test_prompts_price_paths_instead_of_excluding_them() -> None:
+    from odds.pipeline import METHOD, RULES
+
+    assert "No moralising and no sanitising" in RULES
+    assert "NOT excluded" in RULES
+    assert "overriding another person's" in RULES  # the one exclusion is explicit
+    assert "WHOLE option space" in METHOD

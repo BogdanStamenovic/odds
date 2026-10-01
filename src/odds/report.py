@@ -561,6 +561,16 @@ _PLAY_PARTS = (
 )
 
 
+_LANES = {"clean": "clean", "grey": "grey area", "illegal": "illegal for you"}
+
+
+def _lane_chip(s: Strategy) -> str:
+    lane = str(getattr(s, "lane", "") or "clean")
+    if lane not in _LANES:
+        lane = "grey"
+    return f' <span class="lane lane-{lane}">{_LANES[lane]}</span>'
+
+
 def _playbook(run: Run) -> str:
     """The play itself: what to do, how to tell it works, when to quit, what to check first."""
     cards = []
@@ -582,8 +592,10 @@ def _playbook(run: Run) -> str:
         cards.append(
             f'<article class="play{lead}" style="--sc:{_color(i)}">'
             f'<div class="play-head"><div><div class="eyebrow">#{rank}'
-            f'{" · best odds" if rank == 1 else ""}</div><h3>{_e(s.name)}</h3>'
-            f"{f'<p class=muted>{_e(s.summary)}</p>' if s.summary else ''}</div>"
+            f'{" · best odds" if rank == 1 else ""}{_lane_chip(s)}</div><h3>{_e(s.name)}</h3>'
+            f"{f'<p class=muted>{_e(s.summary)}</p>' if s.summary else ''}"
+            f"{f'<p class=exposure><b>Exposure:</b> {_e(s.exposure)}</p>' if s.exposure else ''}"
+            "</div>"
             f'<div class="play-odds"><b>{_e(_pct(s.overall.p50))}</b>'
             f'<span>p10–p90 {_e(_range(s.overall.p10, s.overall.p90))}<br>over {att} '
             f"{_e(_plural(s.attempt_unit, att))}</span></div></div>{body}</article>")
@@ -974,11 +986,18 @@ def render_terminal(run: Run, *, color: bool = False, width: int = 100) -> str:
 
     lw = max((len(x) for s in run.strategies for x in labels(s)), default=0)
     for rank, (_, s) in enumerate(_ranked(run), 1):
-        out += wrap(f"{rank}. {s.name}", "  ")
+        lane = str(getattr(s, "lane", "") or "clean")
+        tag = "" if lane == "clean" else f" [{_LANES.get(lane, 'grey area')}]"
+        out += wrap(f"{rank}. {s.name}{tag}", "  ")
         label_a, label_o = labels(s)
-        out.append(f"       {label_a:<{lw}}  {pct(s.per_attempt.p50):>6}  ({rng(s.per_attempt)})")
+        # With a single attempt the per-attempt and overall lines are the same number.
+        if max(1, int(_num(s.attempts, 1))) > 1:
+            out.append(f"       {label_a:<{lw}}  {pct(s.per_attempt.p50):>6}  "
+                       f"({rng(s.per_attempt)})")
         out.append(f"       {label_o:<{lw}}  {c(f'{pct(s.overall.p50):>6}', 'cyan', 'bold')}  "
                    f"({rng(s.overall)})   effort {_num(s.effort):.2f}")
+        if getattr(s, "exposure", ""):
+            out += wrap(f"exposure: {s.exposure}", "       ")
     out.append("")
 
     ranked = _ranked(run)
@@ -1264,6 +1283,13 @@ blockquote{margin:4px 0 6px;padding:2px 0 2px 12px;border-left:2px solid var(--l
 .play-head h3{font-size:20px;margin:2px 0 4px}
 .play-head p{margin:0;font-size:14px}
 .play-odds{text-align:right;flex:0 0 auto;font-variant-numeric:tabular-nums}
+.lane{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:11px;
+  letter-spacing:.04em;text-transform:uppercase;border:1px solid currentColor}
+.lane-clean{color:var(--muted)}
+.lane-grey{color:#a8740f}
+.lane-illegal{color:#c0392b;font-weight:700}
+.exposure{font-size:13px;margin:.4em 0 0;padding:.4em .6em;border-left:3px solid #c0392b;
+  background:color-mix(in srgb,#c0392b 7%,transparent)}
 .play-odds b{display:block;font-size:28px;line-height:1.1}
 .play-odds span{font-size:12px;color:var(--muted)}
 .play-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 22px;

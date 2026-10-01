@@ -83,9 +83,17 @@ anything else in your environment or memory:
   If you did not open a page, do not quote it. "Unknown" is an acceptable answer.
 - A 403, paywall, login wall, captcha or anti-bot page is a REAL STOP. Note it
   as a dead end and move on. Do not work around it in any way.
-- Be a frank, adult analyst. The question may be about sex, dating, money or
-  other personal matters; analyse it plainly without moralising, but report
-  real legal, safety and consent risks as facts that change the odds.
+- No moralising and no sanitising. This tool weighs pros and cons, nothing
+  else. A path that is socially frowned upon, against a venue's or platform's
+  rules, deceptive, paid, or illegal for the asker is NOT excluded -- it is a
+  path with consequences, and those consequences (legal exposure and its
+  likelihood, fines, deportation, reputation, money, blowback) are priced in as
+  costs and stage risks. Do not drop or soften a path because it is not clean.
+- The single exclusion: paths whose mechanism is overriding another person's
+  consent -- incapacitating or drugging them, coercion, violence, anything
+  involving minors, trafficking-linked services. Those are not consequences to
+  the asker; they are victims. Do not plan them. When a real legal fact turns
+  on consent (e.g. intoxication law), state it as the fact it is, plainly.
 - Output only the JSON requested -- no prose before or after it.
 """
 
@@ -105,7 +113,10 @@ Method -- think like Patrick Jane, not like a search engine:
    much of it there is.
 6. Distrust sources by motive: bragging, selling a course, tiny samples, old
    data, self-selection, survivorship. Forum anecdotes are leads, not rates.
-7. Do not just predict -- engineer. A strategy is a play: steps, tells that it
+7. Map the WHOLE option space: the clean paths, the grey ones, and the ones
+   illegal for the asker. Each is weighed on odds, cost and exposure; let the
+   numbers rank them, not taste.
+8. Do not just predict -- engineer. A strategy is a play: steps, tells that it
    is working, early signs to bail, and cheap tests that split hypotheses.
 """
 
@@ -149,6 +160,9 @@ Reframe it before any research. Return JSON:
      "blocking": true/false, "assume": "default assumption if not asked"}}
  ]
 }}
+Define success by the OUTCOME the asker wants, not by the means: do not write
+exclusions of paths into it (no "excluding paid", "only legitimate"). How it is
+achieved is for the strategies to weigh.
 Mark an unknown "blocking" ONLY if the whole market changes with it (e.g. the
 asker's gender and orientation for a dating question). Everything else gets a
 sensible default assumption. At most 6 unknowns, at most 2 blocking."""
@@ -206,8 +220,10 @@ Plan the research. Return JSON:
 Exactly {count} subquestions. Cover, in this priority: the base rate (hard
 numbers), the other side's psychology and incentives, the market map (where /
 through which channels this actually happens), the local cultural rules,
-logistics, legal and safety risk, and at least one subquestion that tests a
-popular myth. Queries must be SHORT keyword strings -- scholarly indexes match
+logistics, legal and safety risk, at least one subquestion on the grey and
+off-book routes (paid, rule-bending, deceptive, illegal-for-the-asker: how they
+work in practice, their success rates, and what enforcement actually looks
+like), and at least one subquestion that tests a popular myth. Queries must be SHORT keyword strings -- scholarly indexes match
 every word. {"Give 3-5 NEW competing hypotheses." if not hyps else
 "Add hypotheses only if a genuinely new rival explanation is needed; else []."}"""
     result = ask_json(cfg.synth, prompt, timeout=cfg.synth_timeout, check=_check_plan)
@@ -478,6 +494,7 @@ labelled a judgement in its rationale. Return JSON:
      "stages": [{{"name": "...", "low": 0.0-1.0, "high": 0.0-1.0,
                   "evidence_ids": ["E.."], "rationale": "..."}}],
      "attempts": <integer tries inside the asker's horizon>, "attempt_unit": "night out|week|...",
+     "lane": "clean|grey|illegal", "exposure": "what happens if it goes wrong and how likely (enforcement odds, penalty, social cost); empty for clean paths with none",
      "effort": 0.0-1.0, "cost": "money/time in plain words", "risks": ["..."],
      "signals": ["tells it is working"], "bail": ["early signs to switch"],
      "tests": ["cheap probe that splits hypotheses"]}}
@@ -487,7 +504,10 @@ labelled a judgement in its rationale. Return JSON:
  "gaps": [{{"question": "for the asker", "why": "what it changes"}}],
  "followups": ["questions worth a follow-up run"]
 }}
-2-5 strategies, each 3-6 stages, stage probabilities CONDITIONAL on the stages
+2-6 strategies spanning the lanes that exist for this question -- include the
+grey and illegal-for-the-asker routes when they are real options, with
+exposure priced into their stages (e.g. a "not caught / no blowback" stage)
+and stated in 'exposure'. Each 3-6 stages, stage probabilities CONDITIONAL on the stages
 before. A strategy's stages are ONE attempt (one night out, one app match,
 one week); 'attempts' is how many such tries fit in the horizon -- never model
 a whole trip as a single attempt, and a combined plan must be its own chain. Ranges must be honest: wide where evidence is thin. Include the
@@ -533,6 +553,7 @@ def apply_synthesis(run: Run, v: dict[str, Any]) -> None:
             _strs(item.get("steps")), stages,
             max(1, int(_num(item.get("attempts"), 1))), str(item.get("attempt_unit", "attempt")),
             _prob(item.get("effort"), 0.5), str(item.get("cost", "")), _strs(item.get("risks")),
+            _lane(item.get("lane")), str(item.get("exposure", "")),
             _strs(item.get("signals")), _strs(item.get("bail")), _strs(item.get("tests")),
         ))
     run.strategies = strategies
@@ -682,7 +703,10 @@ You are the adversarial reviewer. Your job is to BREAK this analysis, not to
 polish it. Look for: numbers with no evidence behind them; anecdotes treated as
 rates; survivorship and self-selection (who posts success stories?); sources
 with a motive (selling courses, bragging); stale or tiny-sample studies;
-evidence counted as support that is consistent with every hypothesis; missing
+evidence counted as support that is consistent with every hypothesis;
+SANITISING -- a real grey or illegal-for-the-asker route left out, softened, or
+moralised about instead of priced, or a "success" definition that quietly
+excludes means; exposure stated without its likelihood; missing
 counterpart psychology; missing local-language or local-law angles; stage
 probabilities that are not actually conditional; ranges narrower than the
 evidence justifies; a strategy that ignores a real risk.
@@ -840,6 +864,13 @@ def _prob(value: Any, default: float) -> float:
     if p > 1:
         p /= 100
     return min(max(p, 0.0), 1.0)
+
+
+def _lane(value: Any) -> str:
+    lane = str(value or "clean").strip().lower()
+    if lane.startswith("illegal"):
+        return "illegal"
+    return lane if lane in ("clean", "grey") else ("grey" if "gray" in lane else "clean")
 
 
 def _strs(value: Any) -> list[str]:
