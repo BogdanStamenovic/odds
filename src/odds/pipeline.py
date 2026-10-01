@@ -482,7 +482,7 @@ labelled a judgement in its rationale. Return JSON:
      "signals": ["tells it is working"], "bail": ["early signs to switch"],
      "tests": ["cheap probe that splits hypotheses"]}}
  ],
- "verdict": "4-8 sentences: the honest bottom line, best play first. Do NOT type odds for a strategy -- write {{P1}}, {{P2}}... (overall odds over its attempts) or {{P1.per}} (per attempt); the tool fills in the simulated numbers. P-numbers follow the order of your strategies array.",
+ "verdict": "4-8 sentences: the honest bottom line, best play first. Do NOT type odds for a strategy -- write {{P1}}, {{P2}}... (overall odds over its attempts) or {{P1.per}} (per attempt); the tool fills in the simulated number WITH its unit and range (e.g. '~19% over 4 night outs (likely range 7%-41%)'), so do not repeat the unit or horizon around it. P-numbers follow the order of your strategies array.",
  "levers": ["the changes that move the odds most, most powerful first"],
  "gaps": [{{"question": "for the asker", "why": "what it changes"}}],
  "followups": ["questions worth a follow-up run"]
@@ -574,9 +574,11 @@ def _pct(p: float) -> str:
 
 
 def _plural(unit: str, n: int) -> str:
-    if n == 1 or not unit or unit.endswith("s"):
+    # "day of active app use" -> "days of active app use": pluralize the head noun.
+    head, sep, tail = unit.partition(" of ")
+    if n == 1 or not head or head.endswith("s"):
         return unit
-    return unit + ("es" if unit.endswith(("x", "ch", "sh")) else "s")
+    return head + ("es" if head.endswith(("x", "ch", "sh")) else "s") + sep + tail
 
 
 def _check_finalize(v: Any) -> str | None:
@@ -622,7 +624,7 @@ Return JSON:
  "problems": ["what was inconsistent, if anything"],
  "revisions": [{{"id": "P1", "attempts": <int>, "attempt_unit": "...",
                 "stages": [{{"name": "...", "low": 0.0-1.0, "high": 0.0-1.0}}]}}],
- "verdict": "4-8 sentences, best play first. Never type a strategy's odds -- write {{P1}} (overall) or {{P1.per}} (per attempt); the tool fills them in.",
+ "verdict": "4-8 sentences, best play first. Never type a strategy's odds -- write {{P1}} (overall) or {{P1.per}} (per attempt); the tool fills in the number WITH its unit and range, e.g. '~19% over 4 night outs (likely range 7%-41%)' -- so never repeat the unit or horizon around a placeholder.",
  "levers": ["most powerful first"]
 }}
 'revisions' may be empty. Only include 'stages' in a revision if you change them

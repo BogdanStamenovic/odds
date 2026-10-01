@@ -136,8 +136,21 @@ directory each, holding `run.json` and `report.html`.
   works best as an extra researcher next to a web engine, not as the judge.
 - **Reddit is unused until you register an app,** and its adapter has only been
   tested against canned payloads, never the live API.
-- **Cost and time:** each run is a few dozen CLI calls on your subscription.
-  See the measured numbers below.
+- **Cost and time, measured** (same question, Opus judge, Sonnet researchers,
+  2026-10-01). `cost` is what `claude -p` reports: on a subscription that is the
+  notional API-price equivalent, not money charged.
+
+  | depth | wall time | calls | sources | findings | critic | cost |
+  |---|---|---|---|---|---|---|
+  | quick | ~6 min | 6 | 39 | 40 (40 sourced, 0 inferred) | none | not tracked yet |
+  | normal | 12.3 min | 17 (6 Opus, 11 Sonnet) | 73 | 111 (85 / 24 inferred / 2 speculation) | 11 problems, 4 new subquestions | $6.11 |
+
+  Normal is slower than the ~10 minutes it was planned for. The researchers
+  dominate: 1342 s of Sonnet time across 11 calls, run 6 at a time. `deep` has
+  not been measured yet.
+- **The quick run's tags were all "sourced".** With no critic and a looser rule
+  at the time, researchers tagged everything as sourced. The rule is stricter
+  now, but `quick` still has no critic to catch what slips through.
 
 ## License
 

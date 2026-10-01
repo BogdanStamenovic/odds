@@ -239,3 +239,13 @@ def test_fill_formats_small_and_large_odds() -> None:
     out = fill("{P1} / {P1.per}", run)
     assert out == ("~18% over 4 night outs (likely range 10%-30%) / "
                    "~4.2% per night out (likely range 1.0%-8.0%)")
+
+
+def test_plural_handles_head_noun_and_es() -> None:
+    from odds.pipeline import _plural
+
+    assert _plural("day of active app use", 6) == "days of active app use"
+    assert _plural("match", 3) == "matches"
+    assert _plural("night out", 4) == "night outs"
+    assert _plural("night out", 1) == "night out"
+    assert _plural("weeks", 2) == "weeks"
