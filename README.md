@@ -142,7 +142,7 @@ directory each, holding `run.json` and `report.html`.
 
   | depth | wall time | calls | sources | findings | critic | cost |
   |---|---|---|---|---|---|---|
-  | quick | ~6 min | 6 | 39 | 40 (40 sourced, 0 inferred) | none | not tracked yet |
+  | quick | ~6 min | 7 | 39 | 40 (40 sourced, 0 inferred) | none | not tracked yet |
   | normal | 12.3 min | 17 (6 Opus, 11 Sonnet) | 73 | 111 (85 / 24 inferred / 2 speculation) | 11 problems, 4 new subquestions | $6.11 |
 
   Normal is slower than the ~10 minutes it was planned for. The researchers
