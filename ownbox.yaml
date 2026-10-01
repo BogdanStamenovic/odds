@@ -1,0 +1,21 @@
+schema: 1
+name: odds
+description: "Research a silly question like a market: sources, hypotheses, strategies, and the odds."
+homepage: https://github.com/BogdanStamenovic/odds
+tags: [cli, research, llm, python]
+install:
+  platforms: [linux, darwin]
+  setup:
+    linux:
+      - python -m venv .venv
+      - .venv/bin/python -m pip install -e .
+    darwin:
+      - python -m venv .venv
+      - .venv/bin/python -m pip install -e .
+  update:
+    linux: [.venv/bin/python -m pip install -e .]
+    darwin: [.venv/bin/python -m pip install -e .]
+  remove: []
+command:
+  linux: .venv/bin/odds
+  darwin: .venv/bin/odds

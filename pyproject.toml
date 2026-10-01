@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "odds"
+version = "0.1.0"
+description = "Research a silly question like a market: sources, hypotheses, strategies, and the odds."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Bogdan Stamenovic" }]
+keywords = ["research", "llm", "probability", "cli"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0,<10",
+  "pytest-cov>=5.0,<7",
+  "ruff>=0.6,<1",
+  "mypy>=1.11,<3",
+]
+
+[project.scripts]
+odds = "odds.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/odds"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_ignores = true
+warn_redundant_casts = true

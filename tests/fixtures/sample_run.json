@@ -1,0 +1,1020 @@
+{
+  "id": "fixture-korea-0001",
+  "question": "What are my odds of getting a one night stand in Korea?",
+  "created": "2026-10-01T13:40:00+00:00",
+  "depth": "normal",
+  "engines": {
+    "research": "claude",
+    "critic": "codex",
+    "synthesis": "claude"
+  },
+  "framing": {
+    "who": "solo male traveller, 28, English only",
+    "where": "Seoul",
+    "window": "2 weeks",
+    "success": "consensual same-night sex with someone met on the trip"
+  },
+  "assumptions": [
+    "Two-week trip based in Seoul, staying in or near Hongdae.",
+    "No Korean language beyond greetings.",
+    "Success means a consensual, mutual encounter; nothing paid."
+  ],
+  "qa": [
+    {
+      "question": "How long is the trip?",
+      "answer": "Two weeks.",
+      "why": "Sets the number of attempts.",
+      "phase": "intake"
+    },
+    {
+      "question": "Do you drink / enjoy clubs?",
+      "answer": "Yes, moderately.",
+      "why": "Club strategy depends on it.",
+      "phase": "intake"
+    },
+    {
+      "question": "Any Korean at all?",
+      "answer": "",
+      "why": "Gap found by the critic: language weight is uncertain.",
+      "phase": "gap"
+    }
+  ],
+  "subquestions": [
+    {
+      "id": "q1",
+      "text": "What is the base rate of casual sex among young Korean adults?",
+      "angle": "base-rate",
+      "status": "done",
+      "engine": "claude",
+      "round": 0,
+      "summary": "Minority but rising; strong age and city gradient."
+    },
+    {
+      "id": "q2",
+      "text": "How do locals perceive casual encounters with foreigners?",
+      "angle": "psychology",
+      "status": "done",
+      "engine": "claude",
+      "round": 0
+    },
+    {
+      "id": "q3",
+      "text": "Which channels do tourists actually use?",
+      "angle": "logistics",
+      "status": "done",
+      "engine": "codex",
+      "round": 0
+    },
+    {
+      "id": "q4",
+      "text": "Where is nightlife foreigner-friendly?",
+      "angle": "culture",
+      "status": "done",
+      "engine": "claude",
+      "round": 0
+    },
+    {
+      "id": "q5",
+      "text": "What are the practical logistics?",
+      "angle": "logistics",
+      "status": "done",
+      "engine": "codex",
+      "round": 1
+    },
+    {
+      "id": "q6",
+      "text": "How do hostel social scenes play out?",
+      "angle": "anecdote",
+      "status": "failed",
+      "engine": "claude",
+      "round": 1
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://example.com/fixture/survey-sexual-behaviour-2023",
+      "title": "Example national survey on sexual behaviour (fictional)",
+      "kind": "study",
+      "quality": 0.8,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S2",
+      "url": "https://example.org/fixture/tourism-arrivals",
+      "title": "Fictional tourism arrival statistics, 2025",
+      "kind": "statistic",
+      "quality": 0.75,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S3",
+      "url": "https://example.com/fixture/app-usage-asia",
+      "title": "Example dating-app usage report, East Asia",
+      "kind": "statistic",
+      "quality": 0.6,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S4",
+      "url": "https://example.net/fixture/news-itaewon-nightlife",
+      "title": "Example News: Itaewon nightlife after reopening",
+      "kind": "news",
+      "quality": 0.55,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S5",
+      "url": "https://example.net/fixture/news-love-motels",
+      "title": "Example Times: the economics of love motels",
+      "kind": "news",
+      "quality": 0.5,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S6",
+      "url": "https://example.com/fixture/expat-guide-dating",
+      "title": "Fictional expat guide: dating in Seoul",
+      "kind": "guide",
+      "quality": 0.4,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S7",
+      "url": "https://example.com/fixture/hostel-guide",
+      "title": "Fictional backpacker hostel guide, Hongdae",
+      "kind": "guide",
+      "quality": 0.35,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S8",
+      "url": "https://forum.example.com/t/fixture-seoul-nightlife",
+      "title": "Example travel forum thread: Seoul nightlife for foreigners",
+      "kind": "forum",
+      "quality": 0.3,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S9",
+      "url": "https://forum.example.com/t/fixture-language-exchange",
+      "title": "Example forum: language exchange meetups, what to expect",
+      "kind": "forum",
+      "quality": 0.3,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S10",
+      "url": "https://reddit.example.com/r/fixture_korea/comments/abc",
+      "title": "r/fixture_korea: 'Realistic expectations as a tourist?'",
+      "kind": "reddit",
+      "quality": 0.25,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S11",
+      "url": "https://reddit.example.com/r/fixture_travel/comments/def",
+      "title": "r/fixture_travel: hostel romance stories thread",
+      "kind": "reddit",
+      "quality": 0.2,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S12",
+      "url": "https://wiki.example.org/wiki/Fixture_Korean_dating_culture",
+      "title": "Example wiki: dating culture in South Korea",
+      "kind": "wiki",
+      "quality": 0.45,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S13",
+      "url": "https://example.kr/fixture/blog-post-123",
+      "title": "외국인과의 원나잇에 대한 인식 (예시 블로그)",
+      "kind": "forum",
+      "quality": 0.3,
+      "lang": "ko",
+      "note": "Korean-language blog; machine-translated during research."
+    },
+    {
+      "id": "S14",
+      "url": "https://example.com/fixture/study-attitudes-casual-sex",
+      "title": "Example study: attitudes to casual sex among young urban adults",
+      "kind": "study",
+      "quality": 0.7,
+      "lang": "en",
+      "note": ""
+    },
+    {
+      "id": "S15",
+      "url": "javascript:alert('fixture-unsafe-url')",
+      "title": "Unsafe-scheme URL kept to exercise the renderer",
+      "kind": "other",
+      "quality": 0.1,
+      "lang": "en",
+      "note": "Deliberately non-http so the report must not link it."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "Survey reports a minority of adults aged 20-34 had a casual partner in the past year.",
+      "tag": "sourced",
+      "source_ids": [
+        "S1"
+      ],
+      "quote": "Roughly one in five respondents in the youngest cohort...",
+      "subquestion_id": "q1",
+      "weight": 0.8
+    },
+    {
+      "id": "E2",
+      "claim": "Casual-sex attitudes have liberalised notably among urban under-30s over a decade.",
+      "tag": "sourced",
+      "source_ids": [
+        "S14",
+        "S1"
+      ],
+      "quote": "Approval rose by double digits between waves.",
+      "subquestion_id": "q1",
+      "weight": 0.7
+    },
+    {
+      "id": "E3",
+      "claim": "Foreign visitor arrivals are concentrated in Seoul, largely Myeongdong, Hongdae, Itaewon.",
+      "tag": "sourced",
+      "source_ids": [
+        "S2"
+      ],
+      "quote": "",
+      "subquestion_id": "q4",
+      "weight": 0.3
+    },
+    {
+      "id": "E4",
+      "claim": "Itaewon and Hongdae clubs have a mixed local/foreign crowd on weekends.",
+      "tag": "sourced",
+      "source_ids": [
+        "S4",
+        "S8"
+      ],
+      "quote": "Weekends are packed with both expats and locals.",
+      "subquestion_id": "q4",
+      "weight": 0.6
+    },
+    {
+      "id": "E5",
+      "claim": "Some Seoul clubs informally restrict entry for foreigners.",
+      "tag": "sourced",
+      "source_ids": [
+        "S8",
+        "S10"
+      ],
+      "quote": "Got turned away at two places in Gangnam.",
+      "subquestion_id": "q4",
+      "weight": 0.5
+    },
+    {
+      "id": "E6",
+      "claim": "Dating apps are widely used by locals, but more for dating than hookups.",
+      "tag": "sourced",
+      "source_ids": [
+        "S3",
+        "S6"
+      ],
+      "quote": "",
+      "subquestion_id": "q3",
+      "weight": 0.7
+    },
+    {
+      "id": "E7",
+      "claim": "Tinder in Seoul skews toward foreigners and locals interested in foreigners.",
+      "tag": "inferred",
+      "source_ids": [
+        "S3",
+        "S10"
+      ],
+      "quote": "",
+      "subquestion_id": "q3",
+      "weight": 0.6
+    },
+    {
+      "id": "E8",
+      "claim": "Love motels are cheap, discreet and ubiquitous, removing the 'where' problem.",
+      "tag": "sourced",
+      "source_ids": [
+        "S5"
+      ],
+      "quote": "Rooms by the hour in every nightlife district.",
+      "subquestion_id": "q5",
+      "weight": 0.6
+    },
+    {
+      "id": "E9",
+      "claim": "Many young adults live with parents, so going 'back to mine' is uncommon for locals.",
+      "tag": "sourced",
+      "source_ids": [
+        "S12",
+        "S5"
+      ],
+      "quote": "",
+      "subquestion_id": "q5",
+      "weight": 0.5
+    },
+    {
+      "id": "E10",
+      "claim": "Language barrier reduces conversion of first conversations to a second meeting.",
+      "tag": "inferred",
+      "source_ids": [
+        "S8",
+        "S9"
+      ],
+      "quote": "",
+      "subquestion_id": "q2",
+      "weight": 0.55
+    },
+    {
+      "id": "E11",
+      "claim": "Language-exchange meetups attract people specifically interested in foreigners.",
+      "tag": "sourced",
+      "source_ids": [
+        "S9"
+      ],
+      "quote": "Half the room is there to practise English.",
+      "subquestion_id": "q3",
+      "weight": 0.5
+    },
+    {
+      "id": "E12",
+      "claim": "Language-exchange attendees usually expect a slow, friendship-first pace.",
+      "tag": "inferred",
+      "source_ids": [
+        "S9",
+        "S13"
+      ],
+      "quote": "",
+      "subquestion_id": "q2",
+      "weight": 0.55
+    },
+    {
+      "id": "E13",
+      "claim": "Korean blog posts describe social stigma for women seen leaving with foreigners.",
+      "tag": "sourced",
+      "source_ids": [
+        "S13"
+      ],
+      "quote": "외국인이랑 나가는 걸 보면 사람들이 수군거린다",
+      "subquestion_id": "q2",
+      "weight": 0.65
+    },
+    {
+      "id": "E14",
+      "claim": "Hostel social events produce frequent traveller-to-traveller pairings.",
+      "tag": "sourced",
+      "source_ids": [
+        "S7",
+        "S11"
+      ],
+      "quote": "Every pub crawl ended with at least one couple.",
+      "subquestion_id": "q6",
+      "weight": 0.4
+    },
+    {
+      "id": "E15",
+      "claim": "Dorm rooms make privacy the main hostel bottleneck.",
+      "tag": "inferred",
+      "source_ids": [
+        "S7"
+      ],
+      "quote": "",
+      "subquestion_id": "q6",
+      "weight": 0.5
+    },
+    {
+      "id": "E16",
+      "claim": "Approach confidence matters more than nationality for club success.",
+      "tag": "speculation",
+      "source_ids": [],
+      "quote": "",
+      "subquestion_id": "q2",
+      "weight": 0.3
+    },
+    {
+      "id": "E17",
+      "claim": "Foreign men are perceived as 'exotic' and therefore advantaged.",
+      "tag": "speculation",
+      "source_ids": [
+        "S10"
+      ],
+      "quote": "Every expat says this; nobody measured it.",
+      "subquestion_id": "q2",
+      "weight": 0.2
+    },
+    {
+      "id": "E18",
+      "claim": "Reddit anecdotes on tourist hookups are heavily survivor-biased.",
+      "tag": "inferred",
+      "source_ids": [
+        "S10",
+        "S11"
+      ],
+      "quote": "",
+      "subquestion_id": "q1",
+      "weight": 0.6
+    },
+    {
+      "id": "E19",
+      "claim": "Club nights typically run until 5-6am, giving long windows for conversation.",
+      "tag": "sourced",
+      "source_ids": [
+        "S4",
+        "S6"
+      ],
+      "quote": "",
+      "subquestion_id": "q4",
+      "weight": 0.3
+    },
+    {
+      "id": "E20",
+      "claim": "A two-week trip yields about six realistic club nights given jet lag and sightseeing.",
+      "tag": "inferred",
+      "source_ids": [
+        "S6"
+      ],
+      "quote": "",
+      "subquestion_id": "q5",
+      "weight": 0.4
+    },
+    {
+      "id": "E21",
+      "claim": "Tourists often over-estimate their odds based on social-media content.",
+      "tag": "speculation",
+      "source_ids": [
+        "S15"
+      ],
+      "quote": "",
+      "subquestion_id": "q1",
+      "weight": 0.3
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "Foreigner-friendly nightlife districts give a tourist a real edge; locals there are open to casual encounters with visitors.",
+      "prior": 0.4,
+      "posterior": 0.55,
+      "support": [
+        "E2",
+        "E4",
+        "E7",
+        "E19"
+      ],
+      "against": [
+        "E5",
+        "E13"
+      ],
+      "status": "supported",
+      "reasoning": "Mixed crowds and liberalising attitudes outweigh entry restrictions, but only in Itaewon/Hongdae."
+    },
+    {
+      "id": "H2",
+      "statement": "Conservative norms make same-night sex with a local rare; most tourist hookups are with other foreigners.",
+      "prior": 0.45,
+      "posterior": 0.5,
+      "support": [
+        "E9",
+        "E13",
+        "E14",
+        "E12"
+      ],
+      "against": [
+        "E2",
+        "E4"
+      ],
+      "status": "open",
+      "reasoning": "Genuinely unresolved: the evidence splits by district and age."
+    },
+    {
+      "id": "H3",
+      "statement": "Dating apps are the dominant channel for tourists.",
+      "prior": 0.5,
+      "posterior": 0.3,
+      "support": [
+        "E7"
+      ],
+      "against": [
+        "E6",
+        "E10"
+      ],
+      "status": "refuted",
+      "reasoning": "Apps skew to slow dating; conversion inside a short trip window is poor."
+    },
+    {
+      "id": "H4",
+      "statement": "The language barrier is the binding constraint.",
+      "prior": 0.35,
+      "posterior": 0.4,
+      "support": [
+        "E10",
+        "E12"
+      ],
+      "against": [
+        "E11",
+        "E4"
+      ],
+      "status": "open",
+      "reasoning": ""
+    },
+    {
+      "id": "H5",
+      "statement": "Outcome is driven by individual approach skill, not by location or culture.",
+      "prior": 0.3,
+      "posterior": 0.25,
+      "support": [
+        "E16",
+        "E17"
+      ],
+      "against": [
+        "E5",
+        "E13",
+        "E9"
+      ],
+      "status": "refuted",
+      "reasoning": "Support is speculation only; structural factors clearly matter."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "s1",
+      "name": "Weekend club nights in Itaewon / Hongdae",
+      "summary": "Go out on Friday and Saturday nights in the two most foreigner-mixed districts.",
+      "steps": [
+        "Book a room within walking distance of Itaewon or Hongdae.",
+        "Go out Friday and Saturday from ~11pm; skip Gangnam clubs.",
+        "Start conversations at the bar or in the smoking area, not on the dance floor.",
+        "If it clicks, suggest a quieter second spot before anything else.",
+        "Keep it low-key leaving; discretion matters more than speed."
+      ],
+      "signals": [
+        "She suggests the next venue herself.",
+        "Conversation moves from English small talk to personal topics.",
+        "Her friends leave you two alone rather than pulling her back."
+      ],
+      "bail": [
+        "Two venues in a row refuse entry: switch district.",
+        "After three nights no conversation lasts past ten minutes: switch to hostel."
+      ],
+      "tests": [
+        "Night one: count how many mixed local/foreign groups are in the venue (splits H1 vs H2).",
+        "Ask a bartender which nights the crowd is more local."
+      ],
+      "stages": [
+        {
+          "name": "Get into a club with a mixed crowd",
+          "low": 0.8,
+          "high": 0.95,
+          "evidence_ids": [
+            "E4",
+            "E5"
+          ],
+          "rationale": "Range set from E4, E5; wide because sources are thin."
+        },
+        {
+          "name": "Start a conversation with someone receptive",
+          "low": 0.45,
+          "high": 0.75,
+          "evidence_ids": [
+            "E4",
+            "E19"
+          ],
+          "rationale": "Range set from E4, E19; wide because sources are thin."
+        },
+        {
+          "name": "Interest is mutual and sustained",
+          "low": 0.25,
+          "high": 0.5,
+          "evidence_ids": [
+            "E2",
+            "E16"
+          ],
+          "rationale": "Range set from E2, E16; wide because sources are thin."
+        },
+        {
+          "name": "Agree to leave together",
+          "low": 0.12,
+          "high": 0.3,
+          "evidence_ids": [
+            "E13",
+            "E9"
+          ],
+          "rationale": "Range set from E13, E9; wide because sources are thin."
+        },
+        {
+          "name": "Logistics work (love motel nearby)",
+          "low": 0.75,
+          "high": 0.95,
+          "evidence_ids": [
+            "E8"
+          ],
+          "rationale": "Range set from E8; wide because sources are thin."
+        }
+      ],
+      "attempts": 6,
+      "attempt_unit": "night out",
+      "effort": 0.4,
+      "cost": "~$60-120 per night",
+      "risks": [
+        "Entry refusals at some venues",
+        "Alcohol-driven misjudgement of consent"
+      ],
+      "per_attempt": {
+        "p10": 0.0201,
+        "p50": 0.0332,
+        "p90": 0.0529,
+        "mean": 0.0351
+      },
+      "overall": {
+        "p10": 0.1145,
+        "p50": 0.1834,
+        "p90": 0.2783,
+        "mean": 0.1908
+      },
+      "sensitivity": {
+        "Get into a club with a mixed crowd": 0.015,
+        "Start a conversation with someone receptive": 0.028,
+        "Interest is mutual and sustained": 0.0454,
+        "Agree to leave together": 0.0796,
+        "Logistics work (love motel nearby)": 0.0158
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Dating apps during the trip",
+      "summary": "Run Tinder/Bumble from arrival, set travel mode a week before.",
+      "steps": [
+        "Turn on travel mode a week before arrival.",
+        "Write a profile that says plainly you are visiting for two weeks.",
+        "Move to a meeting within two days of matching.",
+        "Meet in Hongdae near your accommodation."
+      ],
+      "signals": [
+        "Matches reply in English without prompting.",
+        "She proposes a specific time and place."
+      ],
+      "bail": [
+        "No meeting set up by day five: drop apps, put the time into nights out."
+      ],
+      "tests": [
+        "Compare match rate with and without 'visiting' in the bio for two days (splits H3)."
+      ],
+      "stages": [
+        {
+          "name": "Get matches in the window",
+          "low": 0.8,
+          "high": 0.95,
+          "evidence_ids": [
+            "E6",
+            "E7"
+          ],
+          "rationale": "Range set from E6, E7; wide because sources are thin."
+        },
+        {
+          "name": "Chat converts to an in-person meeting",
+          "low": 0.2,
+          "high": 0.4,
+          "evidence_ids": [
+            "E6",
+            "E10"
+          ],
+          "rationale": "Range set from E6, E10; wide because sources are thin."
+        },
+        {
+          "name": "Meeting actually happens",
+          "low": 0.5,
+          "high": 0.75,
+          "evidence_ids": [
+            "E10"
+          ],
+          "rationale": "Range set from E10; wide because sources are thin."
+        },
+        {
+          "name": "In-person chemistry",
+          "low": 0.3,
+          "high": 0.55,
+          "evidence_ids": [
+            "E16"
+          ],
+          "rationale": "Range set from E16; wide because sources are thin."
+        },
+        {
+          "name": "Same-night intimacy",
+          "low": 0.15,
+          "high": 0.35,
+          "evidence_ids": [
+            "E6",
+            "E9"
+          ],
+          "rationale": "Range set from E6, E9; wide because sources are thin."
+        },
+        {
+          "name": "Logistics work",
+          "low": 0.8,
+          "high": 0.95,
+          "evidence_ids": [
+            "E8"
+          ],
+          "rationale": "Range set from E8; wide because sources are thin."
+        }
+      ],
+      "attempts": 2,
+      "attempt_unit": "week",
+      "effort": 0.3,
+      "cost": "Free to ~$30 premium",
+      "risks": [
+        "Scams and fake profiles",
+        "Mismatch in intent (dating vs casual)"
+      ],
+      "per_attempt": {
+        "p10": 0.0086,
+        "p50": 0.0144,
+        "p90": 0.0231,
+        "mean": 0.0153
+      },
+      "overall": {
+        "p10": 0.0171,
+        "p50": 0.0286,
+        "p90": 0.0457,
+        "mean": 0.0303
+      },
+      "sensitivity": {
+        "Get matches in the window": 0.0026,
+        "Chat converts to an in-person meeting": 0.01,
+        "Meeting actually happens": 0.0046,
+        "In-person chemistry": 0.0072,
+        "Same-night intimacy": 0.0119,
+        "Logistics work": 0.0026
+      }
+    },
+    {
+      "id": "s3",
+      "name": "Hostel social scene",
+      "summary": "Stay at a social hostel in Hongdae and join every event.",
+      "steps": [
+        "Book a hostel known for nightly events, private room if budget allows.",
+        "Join every pub crawl and rooftop night the first week.",
+        "Pair up with travellers who are staying several nights."
+      ],
+      "signals": [
+        "The same people show up to events two nights running.",
+        "Plans for the next day get made as a pair, not a group."
+      ],
+      "bail": [
+        "Events are cancelled or tiny two nights in a row: move hostels."
+      ],
+      "tests": [
+        "Check the hostel's event calendar before booking (round-2 critique)."
+      ],
+      "stages": [
+        {
+          "name": "Social event happens with enough people",
+          "low": 0.7,
+          "high": 0.9,
+          "evidence_ids": [
+            "E14"
+          ],
+          "rationale": "Range set from E14; wide because sources are thin."
+        },
+        {
+          "name": "Meet a compatible fellow traveller",
+          "low": 0.3,
+          "high": 0.55,
+          "evidence_ids": [
+            "E14"
+          ],
+          "rationale": "Range set from E14; wide because sources are thin."
+        },
+        {
+          "name": "Mutual interest",
+          "low": 0.25,
+          "high": 0.45,
+          "evidence_ids": [
+            "E14",
+            "E18"
+          ],
+          "rationale": "Range set from E14, E18; wide because sources are thin."
+        },
+        {
+          "name": "Solve privacy (private room / motel)",
+          "low": 0.35,
+          "high": 0.65,
+          "evidence_ids": [
+            "E15",
+            "E8"
+          ],
+          "rationale": "Range set from E15, E8; wide because sources are thin."
+        }
+      ],
+      "attempts": 5,
+      "attempt_unit": "event",
+      "effort": 0.25,
+      "cost": "~$25/night dorm",
+      "risks": [
+        "Small pool; mostly other foreigners",
+        "Dorm etiquette friction"
+      ],
+      "per_attempt": {
+        "p10": 0.0376,
+        "p50": 0.0569,
+        "p90": 0.085,
+        "mean": 0.0593
+      },
+      "overall": {
+        "p10": 0.1743,
+        "p50": 0.2538,
+        "p90": 0.3585,
+        "mean": 0.2607
+      },
+      "sensitivity": {
+        "Social event happens with enough people": 0.0282,
+        "Meet a compatible fellow traveller": 0.0538,
+        "Mutual interest": 0.0637,
+        "Solve privacy (private room / motel)": 0.0461
+      }
+    },
+    {
+      "id": "s4",
+      "name": "Language-exchange meetups",
+      "summary": "Attend weekly language-exchange events and follow up socially.",
+      "steps": [
+        "Find two language-exchange meetups in week one.",
+        "Have one long one-on-one conversation per meetup.",
+        "Exchange contacts and propose a specific second meeting.",
+        "Make the second meeting a dinner, not another meetup."
+      ],
+      "signals": [
+        "She practises Korean with you, not only English.",
+        "She replies first after the meetup."
+      ],
+      "bail": [
+        "Second meeting not happening by week two: the pace does not fit the trip."
+      ],
+      "tests": [
+        "Ask organisers how many attendees are tourists vs residents (splits H4)."
+      ],
+      "stages": [
+        {
+          "name": "Find a meetup that fits the schedule",
+          "low": 0.75,
+          "high": 0.95,
+          "evidence_ids": [
+            "E11"
+          ],
+          "rationale": "Range set from E11; wide because sources are thin."
+        },
+        {
+          "name": "Have a good one-on-one conversation",
+          "low": 0.5,
+          "high": 0.75,
+          "evidence_ids": [
+            "E11"
+          ],
+          "rationale": "Range set from E11; wide because sources are thin."
+        },
+        {
+          "name": "Get contact info",
+          "low": 0.4,
+          "high": 0.65,
+          "evidence_ids": [
+            "E11",
+            "E12"
+          ],
+          "rationale": "Range set from E11, E12; wide because sources are thin."
+        },
+        {
+          "name": "Second meeting inside the trip",
+          "low": 0.2,
+          "high": 0.4,
+          "evidence_ids": [
+            "E12",
+            "E20"
+          ],
+          "rationale": "Range set from E12, E20; wide because sources are thin."
+        },
+        {
+          "name": "Romantic interest is mutual",
+          "low": 0.2,
+          "high": 0.4,
+          "evidence_ids": [
+            "E12"
+          ],
+          "rationale": "Range set from E12; wide because sources are thin."
+        },
+        {
+          "name": "Same-night intimacy at second meeting",
+          "low": 0.1,
+          "high": 0.3,
+          "evidence_ids": [
+            "E12",
+            "E9"
+          ],
+          "rationale": "Range set from E12, E9; wide because sources are thin."
+        }
+      ],
+      "attempts": 3,
+      "attempt_unit": "meetup",
+      "effort": 0.6,
+      "cost": "~$10 per meetup + drinks",
+      "risks": [
+        "Reputational: these are community spaces",
+        "Slow pace collides with trip length"
+      ],
+      "per_attempt": {
+        "p10": 0.0024,
+        "p50": 0.0046,
+        "p90": 0.0081,
+        "mean": 0.005
+      },
+      "overall": {
+        "p10": 0.0073,
+        "p50": 0.0137,
+        "p90": 0.0241,
+        "mean": 0.0149
+      },
+      "sensitivity": {
+        "Find a meetup that fits the schedule": 0.0014,
+        "Have a good one-on-one conversation": 0.0025,
+        "Get contact info": 0.003,
+        "Second meeting inside the trip": 0.0051,
+        "Romantic interest is mutual": 0.0051,
+        "Same-night intimacy at second meeting": 0.0075
+      }
+    }
+  ],
+  "critiques": [
+    {
+      "round": 1,
+      "problems": [
+        "Stage 'Agree to leave together' cites only anecdotes; range too narrow.",
+        "E16 and E17 are speculation but were weighted like sourced claims.",
+        "No source on women's own perspective in Korean."
+      ],
+      "new_subquestions": [
+        "Find Korean-language perspectives on dating foreigners."
+      ],
+      "verdict": "Revise: widen ranges, add Korean-language sources."
+    },
+    {
+      "round": 2,
+      "problems": [
+        "Hostel strategy assumes events every night; check."
+      ],
+      "new_subquestions": [],
+      "verdict": "Acceptable with stated limits."
+    }
+  ],
+  "base_rate": {
+    "statement": "About 15-25% of urban adults aged 20-34 report at least one casual partner in a year.",
+    "low": 0.15,
+    "high": 0.25,
+    "source_ids": [
+      "S1",
+      "S14"
+    ],
+    "note": "Annual base rate for residents, not per-trip for tourists."
+  },
+  "other_side": "The counterpart is most likely a local in her twenties who goes to Itaewon or Hongdae precisely because it feels outside the usual social surveillance. She is weighing curiosity and fun against the cost of being seen leaving with a foreigner. Discretion and low pressure matter more than spectacle; a visitor who will be gone in a week is both safer (no entanglement) and riskier (no accountability).",
+  "verdict": "FIXTURE — not real research. Over a two-week trip the best strategy (hostel social scene) gives roughly 25% (p10-p90 17%-36%); the single biggest lever is mutual interest, and for club nights it is whether interest converts to leaving together, which is mostly about discretion and pace rather than nationality.",
+  "levers": [
+    "Go out in Itaewon/Hongdae on weekends, not Gangnam.",
+    "Lower the visibility cost: suggest a quieter second venue before anything else.",
+    "Stay near the nightlife so logistics are never the blocker.",
+    "Learn a dozen phrases of Korean; it signals effort."
+  ],
+  "followups": [
+    "How do odds change with a month-long stay instead of two weeks?",
+    "What do Korean-language forums say about tourists specifically?"
+  ],
+  "log": [
+    "intake done",
+    "research round 0: 4 subquestions",
+    "critic round 1",
+    "research round 1",
+    "critic round 2",
+    "monte carlo",
+    "report"
+  ],
+  "status": "done",
+  "schema": 1
+}
